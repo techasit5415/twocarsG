@@ -1,7 +1,7 @@
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +16,19 @@ public class button extends CarGameGui {
         
         // Create a JPanel to hold the button
         JPanel panel = new JPanel();
-        
+
+        // Create an ImageIcon
+        ImageIcon icon = new ImageIcon("img/startbutton.png");
         // Create a JButton
-        JButton button = new JButton("Click Me");
-        button.setBounds(450, 500, 100, 30);
-        
+        JButton button = new JButton(icon);
+
+
+        button.setPreferredSize(new Dimension(700, 800));
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+
+
         // Add ActionListener to the button
         button.addActionListener(new ActionListener() {
             @Override
