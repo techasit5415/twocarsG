@@ -17,6 +17,13 @@ public class menuGame { // Class name should start with a capital letter
 
         // Create the start button
         startButton = new JButton("Start Game");
+        // button 
+        startButton.setPreferredSize(new Dimension(300, 500));
+        startButton.setOpaque(false);
+        startButton.setContentAreaFilled(false);
+        startButton.setBorderPainted(false);
+
+
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -28,8 +35,10 @@ public class menuGame { // Class name should start with a capital letter
         frame.getContentPane().add(startButton, BorderLayout.CENTER);
 
         // Size and show the window
-        frame.pack();
-        frame.setLocationRelativeTo(null); // Center the window
+        
+    
+        // frame.setLocationRelativeTo(null); // Center the window
+        frame.setSize(800, 900);
         frame.setVisible(true);
     }
 
