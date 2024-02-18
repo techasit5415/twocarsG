@@ -1,21 +1,27 @@
-import java.awt.event.*;
 import javax.swing.*;
 
 public class Button {
     public static void main(String[] args) {
-        JFrame f = new JFrame("Button Example");
-        final JTextField tf = new JTextField();
-        tf.setBounds(50, 50, 150, 20);
-        Icon icon = new ImageIcon("img/startbutton");
-        JButton b = new JButton(icon);
-        b.setBounds(50, 100, 95, 30);
+        // Create a button
+        JButton button = new JButton("Click Me");
 
-        b.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                tf.setText(" Start"); // click to start game
-            }
-        });
+        // Add button to a panel
+        JPanel panel = new JPanel();
+        panel.add(button);
+        frame();
 
-        
+       
+    }
+    public static void frame(){
+         // Create a frame
+         JFrame frame = new JFrame();
+         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         
+         // Add panel to the frame
+         frame.getContentPane().add(panel);
+         
+         // Set frame size and make it visible
+         frame.setSize(300, 200);
+         frame.setVisible(true);
     }
 }
