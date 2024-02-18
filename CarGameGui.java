@@ -9,24 +9,39 @@ public class CarGameGui {
     JFrame fr;
     JPanel carPanel;
     CarHandler hnd;
-    JLabel background;
-    JLabel roadbackground;
-    int speed;
-    int width;
-    int height;
+    JLabel background;  
+    int speed = 20;
+    private final int WIDTH = 900;
+    private final int HEIGHT = 800;
     public CarGameGui(){
-        speed = 20;
-        width = 900;
-        height = 800;
         hnd = new CarHandler(this);
+        oCar();
         initGUI();
+        
     }
     private void initGUI(){
         fr = new JFrame("Two Cars");
         fr.setLayout(null);
         background = new JLabel("", new ImageIcon("giffy2.gif"),JLabel.CENTER);
-        background.setBounds(0,0,900,1200);
+        background.setBounds(0,0,WIDTH,HEIGHT);
         fr.add(background);
+        // carPanel = new JPanel();
+        // carPanel.setSize(60,120);
+        // JLabel car = new JLabel(new ImageIcon("car.png"));
+        // carPanel.add(car);
+        // carPanel.setLocation(200,600);
+        // carPanel.setOpaque(true);
+        // carPanel.setBackground(new Color(0, 0, 0 ,0));
+        // carPanel.setBackground(Color.BLUE);
+        background.add(carPanel);
+        fr.setSize(WIDTH,HEIGHT);
+        fr.setVisible(true);
+        fr.setResizable(false);
+        fr.setLocationRelativeTo(null);
+        fr.addKeyListener(hnd);
+        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    private void oCar(){
         carPanel = new JPanel();
         carPanel.setSize(60,120);
         JLabel car = new JLabel(new ImageIcon("car.png"));
@@ -35,13 +50,6 @@ public class CarGameGui {
         carPanel.setOpaque(true);
         carPanel.setBackground(new Color(0, 0, 0 ,0));
         carPanel.setBackground(Color.BLUE);
-        background.add(carPanel);
-        fr.setSize(width,height);
-        fr.setVisible(true);
-        fr.setResizable(false);
-        fr.setLocationRelativeTo(null);
-        fr.addKeyListener(hnd);
-        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
 
