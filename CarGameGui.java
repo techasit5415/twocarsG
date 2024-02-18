@@ -32,10 +32,17 @@ public class CarGameGui {
     public CarGameGui() {
         hnd = new CarHandler(this);
         addCar();
+<<<<<<< HEAD
 
         initGUI();
         scores = new Scores();
         addObstruction();
+=======
+        
+        initGUI();scores = new Scores();
+        addObstruction();
+        
+>>>>>>> 33a15e27a1aa471ef66c73193f009785e280433f
     }
 
     private void initGUI() {
