@@ -4,8 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import java.awt.Component;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,51 +18,47 @@ public class button extends JFrame {
     public static void ButtonOnStart() {
         JFrame frame = new JFrame("Button Example");
 
-
         // Create a JPanel to hold the button
-        JPanel panel = new JPanel();
-        // Create an ImageIcon
-        ImageIcon icon = new ImageIcon("img/startbutton.png");
-        // Create a JButton
-
+        JPanel buttonPanel = new JPanel(new BorderLayout());
         
-
+        // Create an ImageIcon for the button
+        ImageIcon icon = new ImageIcon("img/startbutton.png");
+        
+        // Create a JButton
         JButton button = new JButton(icon);
-        button.setPreferredSize(new Dimension(700, 800));
+        button.setPreferredSize(new Dimension(500, 300));
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
-
-        JLabel background;
-        background = new JLabel("", new ImageIcon("img/giffy2.gif"), JLabel.CENTER);
-        background.setBounds(0, 0, 800, 900);
-        
         
         // Add ActionListener to the button
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    // Dispose the current frame
-                    frame.dispose();
-                    // Create a new instance of CarGameGui
-                    CarGameGui c1 = new CarGameGui();
-                } catch (Exception ex) {
-                    // Handle exception
-                    ex.printStackTrace();
-                }
+                frame.dispose();
+                CarGameGui c1 = new CarGameGui();
             }
         });
-        
+
         // Add the button to the panel
+        buttonPanel.add(button, BorderLayout.CENTER);
         
-        panel.add(button);
+        // Create an ImageIcon for the background
+        ImageIcon originalBackgroundIcon = new ImageIcon("img/menu.png");
+        Image backgroundImg = originalBackgroundIcon.getImage().getScaledInstance(800, 900, Image.SCALE_SMOOTH);
+        ImageIcon resizedBackgroundIcon = new ImageIcon(backgroundImg);
         
+        // Create a JLabel for the background image
+        JLabel background = new JLabel(resizedBackgroundIcon);
         
-        // Add the panel to the frame
-        frame.add(panel);
+        // Set layout for the frame
+        frame.setLayout(new BorderLayout());
         
+        // Add the background to the frame
+        frame.setContentPane(background);
         
+        // Add the buttonPanel to the frame
+        frame.add(buttonPanel, BorderLayout.NORTH);
         
         // Set frame properties
         frame.setSize(800, 900);
