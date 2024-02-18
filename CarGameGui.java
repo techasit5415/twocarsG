@@ -25,9 +25,10 @@ public class CarGameGui {
     public CarGameGui() {
         hnd = new CarHandler(this);
         addCar();
-        initGUI();
         scores = new Scores();
-        addObstruction();
+        // addObstruction();
+        initGUI();
+        
     }
 
     private void initGUI() {
