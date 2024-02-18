@@ -20,8 +20,9 @@ public class CarGameGui {
     CarHandler hnd;
     JLabel background;
     int speed = 100;
-    int ObSpeed = Math.max((int) ((Math.random() * 450) + 1), 350);
-    int pointSpeed = Math.max((int) ((Math.random() * 450) + 1), 350);
+    int frequency = 1500;
+    int ObSpeed = Math.max((int) ((Math.random() * 400) + 1), 300);
+    int pointSpeed = Math.max((int) ((Math.random() * 400) + 1), 300);
     final int WIDTH = 900;
     final int HEIGHT = 800;
 
@@ -80,15 +81,14 @@ public class CarGameGui {
 
         List<Integer> usedXPositions = new ArrayList<>();
 
-        int frequency = 1000;
-
-        frequency = (scores.getScore() % 10 == 0) ? Math.max((int) ((Math.random() * 5) + 1) - frequency, 500)  : 1000;
-
-        pointSpeed = scores.getScore() % 10 == 0 ? Math.min(pointSpeed + (int) ((Math.random() * 100) + 1), 1500) : 500;
-        ObSpeed = scores.getScore() % 10 == 0 ? Math.min(ObSpeed + (int) ((Math.random() * 100) + 1), 1500) : 500;
+        if (frequency > 500 && scores.getScore() % 5 == 0) frequency -= 100;
+        if (pointSpeed < 800 && scores.getScore() % 5 == 0) pointSpeed += (int)(Math.random() * 100);
+        if (ObSpeed < 800 && scores.getScore() % 5 == 0) ObSpeed += (int)(Math.random() * 100);
+        //pointSpeed = scores.getScore() % 5 == 0 ? Math.min(pointSpeed + (int) ((Math.random() * 50) + 1), 1000) : 500;
+        //ObSpeed = scores.getScore() % 5 == 0 ? Math.min(ObSpeed + (int) ((Math.random() * 50) + 1), 1000) : 500;
+        System.out.printf("frequency (%d) : pointSpeed (%d) : ObSpeed (%d)%n",frequency,pointSpeed,ObSpeed);
 
         createObstacleAndPoint(usedXPositions);
-
         scheduler.schedule(() -> addObstruction(), frequency, TimeUnit.MILLISECONDS);
     }
 
