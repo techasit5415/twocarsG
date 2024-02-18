@@ -15,18 +15,24 @@ public class button {
 
         JPanel panel = new JPanel();
         
-        JButton startButton = new JButton("Start Game");
-        startButton.setPreferredSize(new Dimension(100, 50));  //size button
-
-        JButton resume = new JButton("Resume");
-        resume.setPreferredSize(new Dimension(100, 50));
-         
-
-
-
-
+        JButton startButton = new JButton(new ImageIcon("img/startbutton.png"));
+        startButton.setPreferredSize(new Dimension(300, 200));  //size button
+        startButton.setContentAreaFilled(false); //remove blackground
+        startButton.setBorderPainted(false);
+        startButton.setBorder(null);
 
         
+        JButton resume = new JButton("Resume");
+        resume.setPreferredSize(new Dimension(100, 50));
+        resume.setContentAreaFilled(false); //remove blackground
+        resume.setBorderPainted(false);
+        resume.setBorder(null);
+
+
+
+
+
+
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
