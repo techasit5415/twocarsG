@@ -37,7 +37,11 @@ public class Point extends Thread {
             lastUpdateTime = now;
 
             int x = pointPanel.getX();
+<<<<<<< HEAD
             int y = pointPanel.getY() + (int) (500 * elapsedTime / 1_000_000_000); // Convert nanoseconds to seconds
+=======
+            int y = pointPanel.getY() + gui.PointSpeed;
+>>>>>>> fe3ebe0f2a55356615e841b00e7c3de4e1a44c34
 
             pointPanel.setLocation(x, y);
 
