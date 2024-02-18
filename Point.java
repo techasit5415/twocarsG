@@ -25,7 +25,6 @@ public class Point extends Thread {
         pointPanel.add(pointPanelLabel);
 
         gui.background.add(pointPanel);
-        System.out.println(speed);
     }
 
     @Override
