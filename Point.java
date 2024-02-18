@@ -31,7 +31,7 @@ public class Point extends Thread {
     public void run() {
         while (pointPanel.getY() < gui.HEIGHT && isVisible) {
             int x = pointPanel.getX();
-            int y = pointPanel.getY() + gui.speed;
+            int y = pointPanel.getY() + gui.PointSpeed;
 
             pointPanel.setLocation(x, y);
 

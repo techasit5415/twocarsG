@@ -17,6 +17,7 @@ public class CarGameGui {
     JLabel background;
     int speed = 100;
     int ObSpeed = 200;
+    int PointSpeed = 150;
     final int WIDTH = 900;
     final int HEIGHT = 800;
 
@@ -77,7 +78,7 @@ public class CarGameGui {
         List<Integer> usedXPositions = new ArrayList<>();
     
         // Increase speed and obstacle frequency if score is greater than or equal to 5
-        int rate = (scores.getScore() >= 10) ? 2 : 1;
+        int rate = (scores.getScore() >= 15) ? 2 : 1;
         int frequency = (scores.getScore() >= 5) ? 200 : 500;
     
         for (int i = 0; i < rand; i++) {

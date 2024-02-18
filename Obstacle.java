@@ -31,7 +31,7 @@ public class Obstacle extends Thread {
     public void run() {
         while (obstaclePanel.getY() < gui.HEIGHT && isVisible) {
             int x = obstaclePanel.getX();
-            int y = obstaclePanel.getY() + gui.speed;
+            int y = obstaclePanel.getY() + gui.ObSpeed;
 
             obstaclePanel.setLocation(x, y);
 
