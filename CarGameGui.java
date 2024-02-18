@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,14 +15,12 @@ public class CarGameGui {
     CarHandler hnd;
     JLabel background;
     int speed = 100;
-    int ObSpeed = 200;
-    int pointSpeed = 150;
+    int ObSpeed = Math.max((int) ((Math.random() * 450) + 1), 350);
+    int pointSpeed = Math.max((int) ((Math.random() * 450) + 1), 350);
     final int WIDTH = 900;
     final int HEIGHT = 800;
 
     Scores scores;
-
-    int rate = 2;
 
     public CarGameGui() {
         hnd = new CarHandler(this);
@@ -76,12 +73,14 @@ public class CarGameGui {
     
         List<Integer> usedXPositions = new ArrayList<>();
     
-        // Increase speed and obstacle frequency if score is greater than or equal to 5
-        int rate = (scores.getScore() >= 10) ? 2 : 1;
-        int frequency = (scores.getScore() >= 5) ? 200 : 500;
+        int frequency = (scores.getScore() >= 8) ? 350 : 500;
+
+        pointSpeed = scores.getBestScore()% 10 == 0 ?  Math.min(pointSpeed+(int) ((Math.random() * 50) + 1), 1500) : 500;
+        ObSpeed = scores.getBestScore() % 10 == 0 ?  Math.min(ObSpeed+(int) ((Math.random() * 50) + 1), 1500) : 500;
+        
     
         for (int i = 0; i < rand; i++) {
-            createObstacleAndPoint(usedXPositions, rate);
+            createObstacleAndPoint(usedXPositions);
 
             try {
                 Thread.sleep(random.nextInt(500) + frequency);
@@ -92,7 +91,7 @@ public class CarGameGui {
         addObstruction();
     }
     
-    private void createObstacleAndPoint(List<Integer> usedXPositions, int rate) {
+    private void createObstacleAndPoint(List<Integer> usedXPositions) {
         int randomObX = getRandomXPosition(usedXPositions);
         int randomPX;
     
@@ -100,8 +99,8 @@ public class CarGameGui {
             randomPX = getRandomXPosition(usedXPositions);
         } while (randomPX == randomObX);
     
-        Obstacle obstacle = new Obstacle(this, ObSpeed / rate, randomObX, 70, scores);
-        Point point = new Point(this, ObSpeed / rate, randomPX, 70, scores);
+        Obstacle obstacle = new Obstacle(this, ObSpeed, randomObX, 70, scores);
+        Point point = new Point(this, pointSpeed, randomPX, 70, scores);
         obstacle.start();
         point.start();
     

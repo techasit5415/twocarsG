@@ -25,6 +25,7 @@ public class Point extends Thread {
         pointPanel.add(pointPanelLabel);
 
         gui.background.add(pointPanel);
+        System.out.println(speed);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class Point extends Thread {
             lastUpdateTime = now;
 
             int x = pointPanel.getX();
-            int y = pointPanel.getY() + (int) (500 * elapsedTime / 1_000_000_000); // Convert nanoseconds to seconds
+            int y = pointPanel.getY() + (int) (speed * elapsedTime / 1_000_000_000); // Convert nanoseconds to seconds
 
             pointPanel.setLocation(x, y);
 
