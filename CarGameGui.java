@@ -2,6 +2,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -15,13 +20,15 @@ public class CarGameGui {
     CarHandler hnd;
     JLabel background;
     int speed = 100;
-    int frequency = 1000;
-    int ObSpeed = Math.max((int) ((Math.random() * 450) + 1), 350);
-    int pointSpeed = Math.max((int) ((Math.random() * 450) + 1), 350);
+    int frequency = 1500;
+    int ObSpeed = Math.max((int) ((Math.random() * 400) + 1), 300);
+    int pointSpeed = Math.max((int) ((Math.random() * 400) + 1), 300);
     final int WIDTH = 900;
     final int HEIGHT = 800;
 
     Scores scores;
+
+    private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
     public CarGameGui() {
         hnd = new CarHandler(this);
@@ -29,7 +36,6 @@ public class CarGameGui {
         initGUI();
         scores = new Scores();
         addObstruction();
-        
     }
 
     private void initGUI() {
@@ -70,55 +76,44 @@ public class CarGameGui {
 
     private void addObstruction() {
         Random random = new Random();
-    
-        int rand = (int) ((Math.random() * 10) + 1);
-    
-        List<Integer> usedXPositions = new ArrayList<>();
-    
-        if (frequency > 500 && scores.getBestScore() % 5 == 0){
-            frequency -= 50;
-            System.out.println("cur freq"+frequency);
-        } else{
-            frequency = 500;
-        }
-        pointSpeed = scores.getBestScore()% 5 == 0 ?  Math.min(pointSpeed+(int) ((Math.random() * 100) + 1), 1000) : 500;
-        ObSpeed = scores.getBestScore() % 5 == 0 ?  Math.min(ObSpeed+(int) ((Math.random() * 100) + 1), 1000) : 500;
-        System.out.printf("cur ObSpeed (%d) %ncur pointSpeed (%d)%n",ObSpeed,pointSpeed);
-        
-    
-        for (int i = 0; i < rand; i++) {
-            //createObstacleAndPoint(usedXPositions);
 
-            try {
-                Thread.sleep(random.nextInt(500) + frequency);
-            } catch (InterruptedException e) {
-                //e.printStackTrace();
-            }
-        }
-        addObstruction();
+        int rand = (int) ((Math.random() * 10) + 1);
+
+        List<Integer> usedXPositions = new ArrayList<>();
+
+        if (frequency > 500 && scores.getScore() % 5 == 0) frequency -= 100;
+        if (pointSpeed < 800 && scores.getScore() % 5 == 0) pointSpeed += (int)(Math.random() * 100);
+        if (ObSpeed < 800 && scores.getScore() % 5 == 0) ObSpeed += (int)(Math.random() * 100);
+        //pointSpeed = scores.getScore() % 5 == 0 ? Math.min(pointSpeed + (int) ((Math.random() * 50) + 1), 1000) : 500;
+        //ObSpeed = scores.getScore() % 5 == 0 ? Math.min(ObSpeed + (int) ((Math.random() * 50) + 1), 1000) : 500;
+        System.out.printf("frequency (%d) : pointSpeed (%d) : ObSpeed (%d)%n",frequency,pointSpeed,ObSpeed);
+
+        createObstacleAndPoint(usedXPositions);
+        scheduler.schedule(() -> addObstruction(), frequency, TimeUnit.MILLISECONDS);
     }
-    
+
     private void createObstacleAndPoint(List<Integer> usedXPositions) {
         int randomObX = getRandomXPosition(usedXPositions);
         int randomPX;
-    
+
         do {
             randomPX = getRandomXPosition(usedXPositions);
         } while (randomPX == randomObX);
-    
+
         Obstacle obstacle = new Obstacle(this, ObSpeed, randomObX, 70, scores);
         Point point = new Point(this, pointSpeed, randomPX, 70, scores);
         obstacle.start();
         point.start();
-    
+
         usedXPositions.add(randomObX);
         usedXPositions.add(randomPX);
     }
+
     private int getRandomXPosition(List<Integer> usedXPositions) {
         int rand;
         rand = (int) ((Math.random() * 4));
-        int[] xPositions = {260, 360, 470, 570};
+        int[] xPositions = { 260, 360, 470, 570 };
         return xPositions[rand];
-    }    
-    
+    }
+
 }
