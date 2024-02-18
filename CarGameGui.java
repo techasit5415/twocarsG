@@ -16,11 +16,13 @@ public class CarGameGui {
     CarHandler hnd;
     JLabel background;
     int speed = 100;
-    int ObSpeed = 100;
+    int ObSpeed = 200;
     final int WIDTH = 900;
     final int HEIGHT = 800;
 
     Scores scores;
+
+    int rate = 2;
 
     public CarGameGui() {
         hnd = new CarHandler(this);
@@ -72,43 +74,46 @@ public class CarGameGui {
     
         int rand = (int) ((Math.random() * 10) + 1);
     
-        List<Integer> usedXPositions = new ArrayList<>(); // Keep track of used X positions
+        List<Integer> usedXPositions = new ArrayList<>();
+    
+        // Increase speed and obstacle frequency if score is greater than or equal to 5
+        int rate = (scores.getScore() >= 10) ? 2 : 1;
+        int frequency = (scores.getScore() >= 5) ? 200 : 500;
     
         for (int i = 0; i < rand; i++) {
-            int randomObX = getRandomXPosition(usedXPositions);
-            int randomPX = getRandomXPosition(usedXPositions);
-        
-            Obstacle obstacle = new Obstacle(this, ObSpeed, randomObX, 70, scores);
-            Point point = new Point(this, ObSpeed, randomPX, 70, scores); // Pass scores to Point
-            obstacle.start();
-            point.start();
-        
-            usedXPositions.add(randomObX);
-            usedXPositions.add(randomPX);
-        
+            createObstacleAndPoint(usedXPositions, rate);
+
             try {
-                Thread.sleep(random.nextInt(500) + 1000);
+                Thread.sleep(random.nextInt(500) + frequency);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }        
-
-        try {
-            Thread.sleep(random.nextInt(500) + 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-
+    
         addObstruction();
+    }
+    
+    private void createObstacleAndPoint(List<Integer> usedXPositions, int rate) {
+        int randomObX = getRandomXPosition(usedXPositions);
+        int randomPX;
+    
+        do {
+            randomPX = getRandomXPosition(usedXPositions);
+        } while (randomPX == randomObX);
+    
+        Obstacle obstacle = new Obstacle(this, ObSpeed / rate, randomObX, 70, scores);
+        Point point = new Point(this, ObSpeed / rate, randomPX, 70, scores);
+        obstacle.start();
+        point.start();
+    
+        usedXPositions.add(randomObX);
+        usedXPositions.add(randomPX);
     }
     private int getRandomXPosition(List<Integer> usedXPositions) {
         int rand;
-        do {
-            rand = (int) ((Math.random() * 4));
-        } while (usedXPositions.contains(rand));
+        rand = (int) ((Math.random() * 4));
         int[] xPositions = {260, 360, 470, 570};
         return xPositions[rand];
-    }
-    
+    }    
     
 }
