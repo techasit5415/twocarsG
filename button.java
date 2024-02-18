@@ -30,7 +30,7 @@ public class button extends JFrame {
         
          //button start show
         JButton button = new JButton("start");
-        button.setBounds(5000, -500, 50, 50);
+        button.setBounds(50, 100, 300, 400);
         //button.setPreferredSize(new Dimension(500, 300));
         button.setOpaque(false);
         button.setContentAreaFilled(false);
