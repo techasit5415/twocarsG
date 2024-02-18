@@ -10,34 +10,70 @@ public class CarHandler implements KeyListener{
         this.g = ref;
     }
 
+    private void moveLeftCar(){
+        //boolean LCarisRight = false;
+        int x = g.carPanel.getX();
+        int y = g.carPanel.getY();
+        if(LCarisRight == false){
+            g.carPanel.setLocation(x+g.speed, y);
+            LCarisRight = true;
+        }
+        else if(LCarisRight == true){
+            g.carPanel.setLocation(x-g.speed, y);
+            LCarisRight = false;
+        }
+    }
+    
+    private void moveRightCar(){
+        //boolean RCarisLeft = true;
+        int x = g.RcarPanel.getX();
+        int y = g.RcarPanel.getY();
+        if(RCarisLeft == true){
+            g.RcarPanel.setLocation(x+g.speed, y);
+            RCarisLeft = false;
+        }
+        else if(RCarisLeft == false){
+            g.RcarPanel.setLocation(x-g.speed, y);
+            RCarisLeft = true;
+        }
+    }
+    
     @Override
     public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode();
-        if (code == 65){
-            int x = g.carPanel.getX();
-            int y = g.carPanel.getY();
-            if(LCarisRight == false){
-                g.carPanel.setLocation(x+g.speed, y);
-                LCarisRight = true;
-            }
-            else if(LCarisRight == true){
-                g.carPanel.setLocation(x-g.speed, y);
-                LCarisRight = false;
-            }
+        int key = e.getKeyCode();
+        switch (key) {
+            case KeyEvent.VK_A:
+                moveLeftCar();
+                break;
+            case KeyEvent.VK_D:
+                moveRightCar();
+                break;
         }
+        // if (code == 65){
+        //     int x = g.carPanel.getX();
+        //     int y = g.carPanel.getY();
+        //     if(LCarisRight == false){
+        //         g.carPanel.setLocation(x+g.speed, y);
+        //         LCarisRight = true;
+        //     }
+        //     else if(LCarisRight == true){
+        //         g.carPanel.setLocation(x-g.speed, y);
+        //         LCarisRight = false;
+        //     }
+        // }
 
-        else if (code == 68){
-            int x = g.RcarPanel.getX();
-            int y = g.RcarPanel.getY();
-            if(RCarisLeft == true){
-                g.RcarPanel.setLocation(x+g.speed, y);
-                RCarisLeft = false;
-            }
-            else if(RCarisLeft == false){
-                g.RcarPanel.setLocation(x-g.speed, y);
-                RCarisLeft = true;
-            }
-        }
+        // else if (code == 68){
+        //     int x = g.RcarPanel.getX();
+        //     int y = g.RcarPanel.getY();
+        //     if(RCarisLeft == true){
+        //         g.RcarPanel.setLocation(x+g.speed, y);
+        //         RCarisLeft = false;
+        //     }
+        //     else if(RCarisLeft == false){
+        //         g.RcarPanel.setLocation(x-g.speed, y);
+        //         RCarisLeft = true;
+        //     }
+        // }
     }
 
     @Override
