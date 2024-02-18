@@ -6,7 +6,7 @@ public class Obstacle extends Thread {
     private JPanel obstaclePanel;
     private int speed;
     private CarGameGui gui;
-
+    private long lastUpdateTime;
     private Scores scores;
     
     private boolean isVisible = true;
@@ -29,9 +29,15 @@ public class Obstacle extends Thread {
 
     @Override
     public void run() {
+        lastUpdateTime = System.nanoTime();
+
         while (obstaclePanel.getY() < gui.HEIGHT && isVisible) {
+            long now = System.nanoTime();
+            long elapsedTime = now - lastUpdateTime;
+            lastUpdateTime = now;
+
             int x = obstaclePanel.getX();
-            int y = obstaclePanel.getY() + gui.speed;
+            int y = obstaclePanel.getY() + (int) (500 * elapsedTime / 1_000_000_000); // Convert nanoseconds to seconds
 
             obstaclePanel.setLocation(x, y);
 
@@ -44,7 +50,7 @@ public class Obstacle extends Thread {
             }
 
             try {
-                Thread.sleep(speed);
+                Thread.sleep(10); // A small delay to prevent high CPU usage
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -36,13 +36,12 @@ public class button {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // try {
-                //     CarGameGui c1 = new CarGameGui();
-                    
-                    
-                // } catch (Exception ex) {
-                //     // TODO: handle exception
-                // }
+                try {
+                    frame.dispose();
+                    CarGameGui c1 = new CarGameGui();
+                } catch (Exception ex) {
+                    // TODO: handle exception
+                }
             }
         });
 

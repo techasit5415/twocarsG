@@ -17,6 +17,7 @@ public class CarGameGui {
     JLabel background;
     int speed = 100;
     int ObSpeed = 200;
+    int pointSpeed = 150;
     final int WIDTH = 900;
     final int HEIGHT = 800;
 
@@ -38,7 +39,6 @@ public class CarGameGui {
         background = new JLabel("", new ImageIcon("img/giffy2.gif"), JLabel.CENTER);
         background.setBounds(0, 0, WIDTH, HEIGHT);
         fr.add(background);
-
         background.add(carPanel);
         background.add(RcarPanel);
         fr.setSize(WIDTH, HEIGHT);
@@ -86,10 +86,9 @@ public class CarGameGui {
             try {
                 Thread.sleep(random.nextInt(500) + frequency);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
-    
         addObstruction();
     }
     

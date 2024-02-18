@@ -6,7 +6,7 @@ public class Point extends Thread {
     private JPanel pointPanel;
     private int speed;
     private CarGameGui gui;
-
+    private long lastUpdateTime;
     private Scores scores;
 
     private boolean isVisible = true; // Flag to control visibility
@@ -29,13 +29,18 @@ public class Point extends Thread {
 
     @Override
     public void run() {
+        lastUpdateTime = System.nanoTime();
+
         while (pointPanel.getY() < gui.HEIGHT && isVisible) {
+            long now = System.nanoTime();
+            long elapsedTime = now - lastUpdateTime;
+            lastUpdateTime = now;
+
             int x = pointPanel.getX();
-            int y = pointPanel.getY() + gui.speed;
+            int y = pointPanel.getY() + (int) (500 * elapsedTime / 1_000_000_000); // Convert nanoseconds to seconds
 
             pointPanel.setLocation(x, y);
 
-            // Check for hitbox collision with carPanel and RcarPanel
             if (gui.carPanel.getBounds().intersects(pointPanel.getBounds())) {
                 System.out.println("CarPanel hit Point!");
                 handleCollision();
@@ -45,7 +50,7 @@ public class Point extends Thread {
             }
 
             try {
-                Thread.sleep(speed);
+                Thread.sleep(10); // A small delay to prevent high CPU usage
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
