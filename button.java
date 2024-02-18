@@ -1,6 +1,7 @@
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -12,10 +13,22 @@ public class button extends CarGameGui {
         
     }
     public static void ButtonOnStart(){
-        JFrame frame = new JFrame("Button Example");
+        // fr = new JFrame("Two Cars");
+        // fr.setLayout(null);
+        // background = new JLabel("", new ImageIcon("img/giffy2.gif"), JLabel.CENTER);
+        // background.setBounds(0, 0, WIDTH, HEIGHT);
+        // fr.add(background);
+        // background.add(carPanel);
+        // background.add(RcarPanel);
+        // fr.setSize(WIDTH, HEIGHT);
+        // fr.setVisible(true);
+        // fr.setResizable(false);
+        // fr.setLocationRelativeTo(null);
+        // fr.addKeyListener(hnd);
+        // fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         
-        // Create a JPanel to hold the button
-        JPanel panel = new JPanel();
+     
 
         // Create an ImageIcon
         ImageIcon icon = new ImageIcon("img/startbutton.png");
@@ -34,7 +47,7 @@ public class button extends CarGameGui {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    frame.dispose();
+                    fr.dispose();
                     CarGameGui c1 = new CarGameGui();
                     
                 } catch (Exception ex) {
