@@ -37,11 +37,7 @@ public class Obstacle extends Thread {
             lastUpdateTime = now;
 
             int x = obstaclePanel.getX();
-<<<<<<< HEAD
             int y = obstaclePanel.getY() + (int) (500 * elapsedTime / 1_000_000_000); // Convert nanoseconds to seconds
-=======
-            int y = obstaclePanel.getY() + gui.ObSpeed;
->>>>>>> fe3ebe0f2a55356615e841b00e7c3de4e1a44c34
 
             obstaclePanel.setLocation(x, y);
 
