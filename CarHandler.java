@@ -2,19 +2,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class CarHandler implements KeyListener{
+    private boolean toggle = false;
     CarGameGui g;
 
     public CarHandler(CarGameGui ref){
         this.g = ref;
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
         int code = e.getKeyCode();
+        int width = g.fr.getWidth();
+        int carWidth = g.carPanel.getWidth();
         if (code == 65){
-            System.out.println("left key pressed");
             int x = g.carPanel.getX();
             int y = g.carPanel.getY();
             System.out.println(x + "," + y);
@@ -22,13 +22,11 @@ public class CarHandler implements KeyListener{
                 g.carPanel.setLocation(x-g.speed, y);
             }
         }
+        
         else if (code == 68){
-            System.out.println("right key pressed");
             int x = g.carPanel.getX();
             int y = g.carPanel.getY();
             System.out.println(x + "," + y);
-            int width = g.fr.getWidth();
-            int carWidth = g.carPanel.getWidth();
             if (x+g.speed + carWidth <= width){
                 g.carPanel.setLocation(x+g.speed,y);
             }
