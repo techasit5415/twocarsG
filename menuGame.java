@@ -5,6 +5,7 @@ import java.awt.event.*;
 public class menuGame { // Class name should start with a capital letter
     private JFrame frame;
     private JButton startButton;
+    
 
     public menuGame() { // Constructor name should start with a capital letter
         createAndShowGUI();
