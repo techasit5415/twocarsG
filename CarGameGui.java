@@ -55,5 +55,9 @@ public class CarGameGui {
         RcarPanel.setBackground(new Color(0, 0, 0 ,0));
         RcarPanel.setBackground(Color.BLUE);
     }
+
+
+
+   
 }
 
