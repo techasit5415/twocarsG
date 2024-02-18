@@ -22,7 +22,7 @@ public class CarGameGui {
     private void initGUI(){
         fr = new JFrame("Two Cars");
         fr.setLayout(null);
-        background = new JLabel("", new ImageIcon("giffy2.gif"),JLabel.CENTER);
+        background = new JLabel("", new ImageIcon("img/giffy2.gif"),JLabel.CENTER);
         background.setBounds(0,0,WIDTH,HEIGHT);
         fr.add(background);
         // carPanel = new JPanel();
@@ -44,7 +44,7 @@ public class CarGameGui {
     private void oCar(){
         carPanel = new JPanel();
         carPanel.setSize(60,120);
-        JLabel car = new JLabel(new ImageIcon("car.png"));
+        JLabel car = new JLabel(new ImageIcon("img/car.png"));
         carPanel.add(car);
         carPanel.setLocation(200,600);
         carPanel.setOpaque(true);
