@@ -10,14 +10,8 @@ public class CarHandler implements KeyListener{
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
-    }
-
-    @Override
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
+
         int code = e.getKeyCode();
         if (code == 65){
             System.out.println("left key pressed");
@@ -28,7 +22,6 @@ public class CarHandler implements KeyListener{
                 g.carPanel.setLocation(x-g.speed, y);
             }
         }
-
         else if (code == 68){
             System.out.println("right key pressed");
             int x = g.carPanel.getX();
@@ -46,5 +39,11 @@ public class CarHandler implements KeyListener{
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
 }
