@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class button extends JFrame {
     public static void main(String[] args) {
-        // ButtonOnStart();
+        ButtonOnStart();
         buttondead();
        
     }
