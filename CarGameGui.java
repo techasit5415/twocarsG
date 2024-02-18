@@ -15,6 +15,7 @@ public class CarGameGui {
     CarHandler hnd;
     JLabel background;
     int speed = 100;
+    int frequency = 1000;
     int ObSpeed = Math.max((int) ((Math.random() * 450) + 1), 350);
     int pointSpeed = Math.max((int) ((Math.random() * 450) + 1), 350);
     final int WIDTH = 900;
@@ -25,9 +26,9 @@ public class CarGameGui {
     public CarGameGui() {
         hnd = new CarHandler(this);
         addCar();
-        scores = new Scores();
-        // addObstruction();
         initGUI();
+        scores = new Scores();
+        addObstruction();
         
     }
 
@@ -74,14 +75,19 @@ public class CarGameGui {
     
         List<Integer> usedXPositions = new ArrayList<>();
     
-        int frequency = (scores.getScore() >= 8) ? 350 : 500;
-
-        pointSpeed = scores.getBestScore()% 10 == 0 ?  Math.min(pointSpeed+(int) ((Math.random() * 50) + 1), 1500) : 500;
-        ObSpeed = scores.getBestScore() % 10 == 0 ?  Math.min(ObSpeed+(int) ((Math.random() * 50) + 1), 1500) : 500;
+        if (frequency > 500 && scores.getBestScore() % 5 == 0){
+            frequency -= 50;
+            System.out.println("cur freq"+frequency);
+        } else{
+            frequency = 500;
+        }
+        pointSpeed = scores.getBestScore()% 5 == 0 ?  Math.min(pointSpeed+(int) ((Math.random() * 100) + 1), 1000) : 500;
+        ObSpeed = scores.getBestScore() % 5 == 0 ?  Math.min(ObSpeed+(int) ((Math.random() * 100) + 1), 1000) : 500;
+        System.out.printf("cur ObSpeed (%d) %ncur pointSpeed (%d)%n",ObSpeed,pointSpeed);
         
     
         for (int i = 0; i < rand; i++) {
-            createObstacleAndPoint(usedXPositions);
+            //createObstacleAndPoint(usedXPositions);
 
             try {
                 Thread.sleep(random.nextInt(500) + frequency);
