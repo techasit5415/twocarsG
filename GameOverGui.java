@@ -35,6 +35,9 @@ public class GameOverGui extends JFrame {
             }
         });
 
+        JTextField HighScore = new JTextField("0");
+        HighScore.setBounds(700, 0, 100, 50);
+        add(HighScore);
         
 
         // Background
@@ -45,7 +48,7 @@ public class GameOverGui extends JFrame {
         JLabel background = new JLabel(resizedBackgroundIcon);
         background.setBounds(0, 0, 800, 900);
         add(background);
-
+        
         setSize(800, 900);
         setLayout(null);
 
