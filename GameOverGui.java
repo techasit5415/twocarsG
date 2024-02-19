@@ -9,6 +9,8 @@ public class GameOverGui extends JFrame {
 
     private CarGameGui gui;
 
+    private Scores scores = new Scores();
+
     public GameOverGui(CarGameGui gui) {
         this.gui = gui;
 
@@ -82,9 +84,9 @@ public class GameOverGui extends JFrame {
             g.setColor(Color.white);
             Font f = new Font("arial",Font.BOLD,25);
             g.setFont(f);
-            g.drawString("score", 80,120 );
+            g.drawString(Integer.toString(scores.getBestScore()), 80,120 );
 
-            g.drawString("100", 680,120 );
+            g.drawString(Integer.toString(scores.getScore()), 680,120 );
 
         }
 }

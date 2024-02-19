@@ -1,31 +1,24 @@
 ﻿public class Scores {
-    private int score;
-    private int bestScore;
+    private static int score;
+    private static int bestScore;
 
-    public Scores() {
-        this.score = 0;
-        this.bestScore = 0;
-    }
-
-    public int getScore() {
+    public static int getScore() {
         return score;
     }
 
-    public int getBestScore() {
-        return bestScore;
-    }
-
-    public void increaseScore() {
-        score++;
-    }
-
-    public void resetScore() {
-        score = 0;
-    }
-
-    public void updateScore(){
+    public static int getBestScore() {        
         if (score > bestScore) {
             bestScore = score;
         }
+        return bestScore;
     }
+
+    public static void increaseScore() {
+        score++;
+    }
+
+    public static void resetScore() {
+        score = 0;
+    }
+
 }

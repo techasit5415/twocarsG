@@ -1,4 +1,6 @@
 ﻿public class GameRunning {
+
+    private static Scores scores = new Scores();
     public static GameStateContainer gameStateContainer = new GameStateContainer(GameState.MENU);
 
     public static void main(String[] args) {
@@ -23,6 +25,7 @@
     public static void resetGame() {
         GameRunning.gameStateContainer.setValue(GameState.PLAYING);
         CarGameGui.quitGame();
+        scores.resetScore();
         CarGameGui c1 = new CarGameGui();
     }
 
