@@ -8,6 +8,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -27,15 +28,25 @@ public class Point extends Thread {
         this.speed = speed;
         this.scores = scores;
 
+        ImageIcon pointIcon = new ImageIcon("img/POINT.png");
+
         pointPanel = new JPanel();
-        pointPanel.setSize(width, 20);
+        pointPanel.setSize(width, pointIcon.getIconHeight());
         pointPanel.setBackground(Color.GREEN);
         pointPanel.setLocation(x, -100);
 
-        JLabel pointPanelLabel = new JLabel("Point");
-        pointPanel.add(pointPanelLabel);
+        JLabel pointLabel = new JLabel(pointIcon);
+        pointPanel.setLayout(null);
+        pointLabel.setBounds(0, 0, width, pointIcon.getIconHeight());
+
+        pointPanel.add(pointLabel);
+
+        pointPanel.setBackground(new Color(0, 0, 0, 0));
+        pointPanel.setLocation(x, -100);
+
 
         gui.background.add(pointPanel);
+        
     }
 
     @Override
@@ -74,7 +85,7 @@ public class Point extends Thread {
     }
     private void playCollisionSound() {
         try {
-            File soundFile = new File(".\\soundeffect\\YESYES.wav");
+            File soundFile = new File(".\\soundeffect\\ping.wav");
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(soundFile));
             clip.start();

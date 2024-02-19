@@ -94,7 +94,8 @@ public class CarGameGui extends JPanel{
         carPanel.add(car);
         carPanel.setLocation(260, 600);
         carPanel.setOpaque(true);
-        carPanel.setBackground(Color.BLUE);
+        // carPanel.setBackground(Color.BLUE);
+        carPanel.setBackground(new Color(0, 0, 0, 0));
 
         RcarPanel = new JPanel();
         RcarPanel.setSize(70, 120);
@@ -102,7 +103,8 @@ public class CarGameGui extends JPanel{
         RcarPanel.add(Rcar);
         RcarPanel.setLocation(470, 600);
         RcarPanel.setOpaque(true);
-        RcarPanel.setBackground(Color.BLUE);
+        // RcarPanel.setBackground(Color.BLUE);
+        RcarPanel.setBackground(new Color(0, 0, 0, 0));
     }
 
     private void addObstruction() {

@@ -1,11 +1,15 @@
 ﻿
-
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
 
 public class Obstacle extends Thread {
     private JPanel obstaclePanel;
@@ -15,24 +19,30 @@ public class Obstacle extends Thread {
     private Scores scores;
 
     private GameOverGui gover;
-    
+
     private boolean isVisible = true;
 
     public static GameStateContainer gameStateContainer = GameRunning.gameStateContainer;
 
-    public Obstacle(CarGameGui gui, int speed, int x, int width ,Scores scores) {
+    public Obstacle(CarGameGui gui, int speed, int x, int width, Scores scores) {
         this.gui = gui;
         this.speed = speed;
         this.scores = scores;
 
-        obstaclePanel = new JPanel();
-        obstaclePanel.setSize(width, 20); 
-        obstaclePanel.setBackground(Color.RED); 
-        obstaclePanel.setLocation(x, -100); 
+        ImageIcon obstacleIcon = new ImageIcon("img/Obstacle.png");
 
-        JLabel obstacleLabel = new JLabel("Obstacle");
+        obstaclePanel = new JPanel();
+        obstaclePanel.setSize(width, obstacleIcon.getIconHeight());
+
+        JLabel obstacleLabel = new JLabel(obstacleIcon);
+
+        obstaclePanel.setLayout(null);
+        obstacleLabel.setBounds(0, 0, width, obstacleIcon.getIconHeight());
+
         obstaclePanel.add(obstacleLabel);
 
+        obstaclePanel.setBackground(new Color(0, 0, 0, 0));
+        obstaclePanel.setLocation(x, -100);
         gui.background.add(obstaclePanel);
     }
 
@@ -41,23 +51,22 @@ public class Obstacle extends Thread {
         lastUpdateTime = System.nanoTime();
 
         while (obstaclePanel.getY() < gui.HEIGHT && isVisible) {
-            if(GameRunning.gameStateContainer.getValue().equals(GameState.END))
+            if (GameRunning.gameStateContainer.getValue().equals(GameState.END))
                 break;
             long now = System.nanoTime();
             long elapsedTime = now - lastUpdateTime;
             lastUpdateTime = now;
 
             int x = obstaclePanel.getX();
-            int y = obstaclePanel.getY() + (int) (speed * elapsedTime / 1_000_000_000); // Convert nanoseconds to seconds
+            int y = obstaclePanel.getY() + (int) (speed * elapsedTime / 1_000_000_000); // Convert nanoseconds to
+                                                                                        // seconds
 
             obstaclePanel.setLocation(x, y);
 
             if (gui.carPanel.getBounds().intersects(obstaclePanel.getBounds())) {
 
-                
                 handleCollision();
             } else if (gui.RcarPanel.getBounds().intersects(obstaclePanel.getBounds())) {
-                
 
                 // System.out.println("CarPanel hit Point!");
                 handleCollision();
@@ -78,11 +87,23 @@ public class Obstacle extends Thread {
         gui.background.repaint();
     }
 
+    private void playCollisionSound() {
+        try {
+            File soundFile = new File(".\\soundeffect\\gameover.wav");
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(soundFile));
+            clip.start();
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void handleCollision() {
+        playCollisionSound();
+
         GameRunning.gameOver();
 
         gover = new GameOverGui(gui);
         gover.setVisible(true);
     }
 }
-
