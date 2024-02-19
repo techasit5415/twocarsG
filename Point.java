@@ -49,10 +49,10 @@ public class Point extends Thread{
             pointPanel.setLocation(x, y);
 
             if (gui.carPanel.getBounds().intersects(pointPanel.getBounds())) {
-                System.out.println("CarPanel hit Point!");
+                // System.out.println("CarPanel hit Point!");
                 handleCollision();
             } else if (gui.RcarPanel.getBounds().intersects(pointPanel.getBounds())) {
-                System.out.println("RcarPanel hit Point!");
+                // System.out.println("RcarPanel hit Point!");
                 handleCollision();
             }
 
@@ -70,9 +70,7 @@ public class Point extends Thread{
     private void handleCollision() {
         isVisible = false; // Set visibility to false
         scores.increaseScore();
-        
-        
-        
+
     }
 
 }
