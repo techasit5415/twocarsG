@@ -1,23 +1,19 @@
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
+import java.util.concurrent.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class CarGameGui {
-    JFrame fr;
+    static JFrame fr;
     JPanel carPanel;
     JPanel RcarPanel;
     CarHandler hnd;
+
+    public static GameStateContainer gameStateContainer = GameRunning.gameStateContainer;
+
+    private GameOverGui gover;
+
     JLabel background;
     int speed = 100;
     int frequency = 1700;
@@ -26,7 +22,7 @@ public class CarGameGui {
     final int WIDTH = 900;
     final int HEIGHT = 800;
 
-    Scores scores;
+    public static Scores scores;
 
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
@@ -55,6 +51,7 @@ public class CarGameGui {
 
     }
 
+
     private void addCar() {
 
         carPanel = new JPanel();
@@ -75,21 +72,28 @@ public class CarGameGui {
     }
 
     private void addObstruction() {
-        Random random = new Random();
-
-        int rand = (int) ((Math.random() * 10) + 1);
 
         List<Integer> usedXPositions = new ArrayList<>();
-
+        
         if (frequency > 500 && scores.getScore() % 5 == 0) frequency -= 100; 
         if (pointSpeed < 800 && scores.getScore() % 5 == 0) pointSpeed += (int)(Math.random() * 100);
         if (ObSpeed < 800 && scores.getScore() % 5 == 0) ObSpeed += (int)(Math.random() * 100);
         //pointSpeed = scores.getScore() % 5 == 0 ? Math.min(pointSpeed + (int) ((Math.random() * 50) + 1), 1000) : 500;
         //ObSpeed = scores.getScore() % 5 == 0 ? Math.min(ObSpeed + (int) ((Math.random() * 50) + 1), 1000) : 500;
-        System.out.printf("frequency (%d) : pointSpeed (%d) : ObSpeed (%d)%n",frequency,pointSpeed,ObSpeed);
+        // System.out.printf("frequency (%d) : pointSpeed (%d) : ObSpeed (%d)%n",frequency,pointSpeed,ObSpeed);
 
         createObstacleAndPoint(usedXPositions);
-        scheduler.schedule(() -> addObstruction(), frequency, TimeUnit.MILLISECONDS);
+        
+        if(GameRunning.gameStateContainer.getValue().equals(GameState.END))
+            scheduler.shutdown();
+        else
+                    try {
+            scheduler.schedule(() -> addObstruction(), frequency, TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        
+        
     }
 
     private void createObstacleAndPoint(List<Integer> usedXPositions) {
@@ -114,6 +118,10 @@ public class CarGameGui {
         rand = (int) ((Math.random() * 4));
         int[] xPositions = { 260, 360, 470, 570 };
         return xPositions[rand];
+    }
+
+    public static void quitGame() {
+        fr.dispose();
     }
 
 }

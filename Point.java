@@ -9,6 +9,8 @@ public class Point extends Thread {
     private long lastUpdateTime;
     private Scores scores;
 
+    public static GameStateContainer gameStateContainer = GameRunning.gameStateContainer;
+
     private boolean isVisible = true; // Flag to control visibility
 
     public Point(CarGameGui gui, int speed, int x, int width, Scores scores) {
@@ -32,6 +34,8 @@ public class Point extends Thread {
         lastUpdateTime = System.nanoTime();
 
         while (pointPanel.getY() < gui.HEIGHT && isVisible) {
+            if(GameRunning.gameStateContainer.getValue().equals(GameState.END))
+                break;
             long now = System.nanoTime();
             long elapsedTime = now - lastUpdateTime;
             lastUpdateTime = now;

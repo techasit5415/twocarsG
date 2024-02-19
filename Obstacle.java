@@ -8,8 +8,12 @@ public class Obstacle extends Thread {
     private CarGameGui gui;
     private long lastUpdateTime;
     private Scores scores;
+
+    private GameOverGui gover;
     
     private boolean isVisible = true;
+
+    public static GameStateContainer gameStateContainer = GameRunning.gameStateContainer;
 
     public Obstacle(CarGameGui gui, int speed, int x, int width ,Scores scores) {
         this.gui = gui;
@@ -31,7 +35,10 @@ public class Obstacle extends Thread {
     public void run() {
         lastUpdateTime = System.nanoTime();
 
+        System.out.println(GameRunning.gameStateContainer.getValue());
         while (obstaclePanel.getY() < gui.HEIGHT && isVisible) {
+            if(GameRunning.gameStateContainer.getValue().equals(GameState.END))
+                break;
             long now = System.nanoTime();
             long elapsedTime = now - lastUpdateTime;
             lastUpdateTime = now;
@@ -61,8 +68,9 @@ public class Obstacle extends Thread {
     }
 
     private void handleCollision() {
-        isVisible = false; // Set visibility to false
-        scores.resetScore();
-        System.out.println(scores.getScore());
+        GameRunning.gameOver();
+
+        gover = new GameOverGui(gui);
+        gover.setVisible(true);
     }
 }
