@@ -31,10 +31,10 @@ public class GameOverGui extends JFrame {
         btn_rst.setBorderPainted(false);
         btn_rst.setFocusPainted(false);
         btn_rst.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                GameRunning.resetGame();
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            GameRunning.resetGame();
             }
         });
         ImageIcon Exitpj = new ImageIcon("img/EXIT.png");

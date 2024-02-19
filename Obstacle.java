@@ -17,7 +17,8 @@ public class Obstacle extends Thread {
     private CarGameGui gui;
     private long lastUpdateTime;
     private Scores scores;
-
+    
+    static SoundManager setSound;
     private GameOverGui gover;
 
     private boolean isVisible = true;
@@ -76,7 +77,7 @@ public class Obstacle extends Thread {
             }
 
             try {
-                Thread.sleep(10); // A small delay to prevent high CPU usage
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -86,19 +87,8 @@ public class Obstacle extends Thread {
         gui.background.repaint();
     }
 
-    private void playCollisionSound() {
-        try {
-            File soundFile = new File(".\\soundeffect\\gameover.wav");
-            Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(soundFile));
-            clip.start();
-        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void handleCollision() {
-        playCollisionSound();
+        setSound.playGameOver();
 
         GameRunning.gameOver();
 

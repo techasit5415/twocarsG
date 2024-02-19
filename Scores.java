@@ -14,7 +14,6 @@
     }
 
     public static void increaseScore() {
-
         score++;
     }
 

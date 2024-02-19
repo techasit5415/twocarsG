@@ -3,6 +3,8 @@
 public class GameRunning extends JPanel {
 
     private static Scores scores = new Scores();
+    static SoundManager setSound;
+
     public static GameStateContainer gameStateContainer = new GameStateContainer(GameState.MENU);
 
     public static void main(String[] args) {

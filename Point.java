@@ -23,6 +23,8 @@ public class Point extends Thread {
 
     private boolean isVisible = true; // Flag to control visibility
 
+    SoundManager setSound;
+
     public Point(CarGameGui gui, int speed, int x, int width, Scores scores) {
         this.gui = gui;
         this.speed = speed;
@@ -95,7 +97,11 @@ public class Point extends Thread {
     }
 
     private void handleCollision() {
-        isVisible = false; // Set visibility to false
+        setSound.playCollectPoint();
+
+
+        isVisible = false;
+
         playCollisionSound();
         scores.increaseScore();
 
