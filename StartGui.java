@@ -61,7 +61,7 @@ public class StartGui extends JFrame {
             }
         });
 
-        ImageIcon originalBackgroundIcon = new ImageIcon("img/MENUtalay.png");
+        ImageIcon originalBackgroundIcon = new ImageIcon("img/cleanMenu.png");
         // Resize the background ImageIcon to fit the preferred size of the frame
         Image backgroundImg = originalBackgroundIcon.getImage().getScaledInstance(800, 900, Image.SCALE_SMOOTH);
         ImageIcon resizedBackgroundIcon = new ImageIcon(backgroundImg);

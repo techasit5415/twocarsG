@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -51,11 +52,26 @@ public class CarGameGui extends JPanel{
                 super.paintComponent(g);
                 
                 g.setColor(Color.WHITE);
-                g.setFont(new Font("Arial", Font.BOLD, 20));
-                g.drawString("Score: " + scores.getScore(), 20, 20);
+                g.setFont(new Font("Arial", Font.BOLD, 50));
+                g.drawString(""+scores.getScore(), 770, 120);
             }
         };
+
+                    // ICON SCORE
+        ImageIcon SCpj = new ImageIcon("img/SCORE.png");
+        Image img = SCpj.getImage();
+        Image newImg = img.getScaledInstance(100, 50, Image.SCALE_SMOOTH); 
+
+        ImageIcon newIcon = new ImageIcon(newImg);
+        JButton btn_sc = new JButton(newIcon);
+        btn_sc.setBounds(590, 0, 400, 100);
+        fr.add(btn_sc);
+
+        btn_sc.setContentAreaFilled(false);
+        btn_sc.setBorderPainted(false);
+        btn_sc.setFocusPainted(false);
         //finish edit
+        
         background.setBounds(0, 0, WIDTH, HEIGHT);
         fr.add(background);
         background.add(carPanel);

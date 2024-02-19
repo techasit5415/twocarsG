@@ -14,10 +14,16 @@ public class GameOverGui extends JFrame {
     public GameOverGui(CarGameGui gui) {
         this.gui = gui;
 
-        JButton btn_rst = new JButton("Restart");
-        btn_rst.setBounds(250, 200, 300, 100);
+
+
+        ImageIcon RStartpj = new ImageIcon("img/RESTART.png");
+        JButton btn_rst = new JButton(RStartpj);
+        btn_rst.setBounds(205, 470, 400, 100);
         add(btn_rst);
 
+        btn_rst.setContentAreaFilled(false);
+        btn_rst.setBorderPainted(false);
+        btn_rst.setFocusPainted(false);
         btn_rst.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -25,11 +31,17 @@ public class GameOverGui extends JFrame {
                 GameRunning.resetGame();
             }
         });
-
-        JButton btn_q = new JButton("QUIT");
-        btn_q.setBounds(250, 500, 300, 100);
+        ImageIcon Exitpj = new ImageIcon("img/EXIT.png");
+        JButton btn_q = new JButton(Exitpj);
+        btn_q.setBounds(290, 618, 215, 70);
         add(btn_q);
+        btn_q.setBorder(null); 
+        btn_q.setOpaque(false);
 
+        btn_q.setContentAreaFilled(false);
+        btn_q.setBorderPainted(false);
+        btn_q.setFocusPainted(false); 
+        //
         btn_q.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,7 +63,7 @@ public class GameOverGui extends JFrame {
         
 
         // Background
-        ImageIcon originalBackgroundIcon = new ImageIcon("img/MENUtalay.png");
+        ImageIcon originalBackgroundIcon = new ImageIcon("img/menuRestartclean.png");
         Image backgroundImg = originalBackgroundIcon.getImage().getScaledInstance(800, 900, Image.SCALE_SMOOTH);
         ImageIcon resizedBackgroundIcon = new ImageIcon(backgroundImg);
 
