@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Font;
 
 public class GameOverGui extends JFrame {
 
@@ -35,9 +38,17 @@ public class GameOverGui extends JFrame {
             }
         });
 
-        JTextField HighScore = new JTextField("0");
-        HighScore.setBounds(700, 0, 100, 50);
-        add(HighScore);
+        // JTextField HighScore = new JTextField("0");
+        // HighScore.setBounds(160, 0, 60, 50);
+        // HighScore.setOpaque(false);
+        // HighScore.setBorder(null);
+        // add(HighScore);
+
+        // JTextField CRScore = new JTextField("0");
+        // CRScore.setBounds(750, 0, 40, 50);
+        // CRScore.setOpaque(false);
+        // CRScore.setBorder(null);
+        // add(CRScore);
         
 
         // Background
@@ -64,5 +75,13 @@ public class GameOverGui extends JFrame {
                 gui.quitGame(); // Close the main game window
             }
         });
+
+        @Override
+        public void paint(Graphics g){
+            super.paint(g);
+
+            g.setColor(getBackground());
+
+        }
     }
 }
