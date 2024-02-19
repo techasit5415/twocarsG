@@ -9,23 +9,55 @@ public class StartGui extends JFrame {
     
     public StartGui(){
         JFrame frame = new JFrame("TWO Cars");
-        JButton btn=new JButton("");  
-        btn.setBounds(250,370,295,80);  
-        frame.add(btn);  
+        ImageIcon startpj = new ImageIcon("img/START.png");
+        JButton btnstrt=new JButton(startpj);  
+        btnstrt.setBounds(250,370,295,80);  
+        frame.add(btnstrt);  
         frame.setSize(400,400);  
         frame.setLayout(null);  
-        frame.setVisible(true);  
+        frame.setVisible(true); 
+        
         //dont show background btn
-        // btn.setOpaque(false);
-        // btn.setContentAreaFilled(false);
-        btn.setBorderPainted(false); 
+        // btnstrt.setBorder(null); 
+        // btnstrt.setOpaque(false);
+
+        btnstrt.setContentAreaFilled(false);
+        btnstrt.setBorderPainted(false);
+        btnstrt.setFocusPainted(false); 
         //
-        btn.addActionListener(new ActionListener() {
+        btnstrt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                     frame.dispose();
                     GameRunning.mainGame();
                     // System.out.println(GameRunning.gameStateContainer.getValue());
+            }
+        });
+
+
+
+        ImageIcon exitpj = new ImageIcon("img/EXIT.png");
+        JButton btnExit=new JButton(exitpj);  
+        btnExit.setBounds(295,470,210,70);  
+        frame.add(btnExit);  
+        frame.setSize(400,400);  
+        frame.setLayout(null);  
+        frame.setVisible(true); 
+        
+        // dont show background btn
+        btnExit.setBorder(null); 
+        btnExit.setOpaque(false);
+
+        btnExit.setContentAreaFilled(false);
+        btnExit.setBorderPainted(false);
+        btnExit.setFocusPainted(false); 
+        //
+        btnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    frame.dispose();
+                    
+        
             }
         });
 
