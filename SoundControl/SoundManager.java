@@ -1,7 +1,9 @@
 ﻿package SoundControl;
-import java.io.File;
-import java.io.IOException;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
@@ -13,10 +15,18 @@ public class SoundManager {
 
     public static void playGameOver() {
         try {
-            File soundFile = new File(".\\soundeffect\\gameover.wav");
-            Clip collisionClip = AudioSystem.getClip();
-            collisionClip.open(AudioSystem.getAudioInputStream(soundFile));
-            collisionClip.start();
+            // Use InputStream instead of File
+            InputStream soundStream = SoundManager.class.getResourceAsStream("/SoundControl/soundeffect/gameover.wav");
+            
+            // Check if the InputStream is not null
+            if (soundStream != null) {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundStream);
+                collisionClip = AudioSystem.getClip();
+                collisionClip.open(audioInputStream);
+                collisionClip.start();
+            } else {
+                System.out.println("Sound file not found: gameover.wav");
+            }
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
@@ -24,10 +34,18 @@ public class SoundManager {
 
     public static void playCollectPoint() {
         try {
-            File soundFile = new File(".\\soundeffect\\ping.wav");
-            Clip collisionClip = AudioSystem.getClip();
-            collisionClip.open(AudioSystem.getAudioInputStream(soundFile));
-            collisionClip.start();
+            // Use InputStream instead of File
+            InputStream soundStream = SoundManager.class.getResourceAsStream("/SoundControl/soundeffect/ping.wav");
+            
+            // Check if the InputStream is not null
+            if (soundStream != null) {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundStream);
+                collisionClip = AudioSystem.getClip();
+                collisionClip.open(audioInputStream);
+                collisionClip.start();
+            } else {
+                System.out.println("Sound file not found: ping.wav");
+            }
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
@@ -39,5 +57,4 @@ public class SoundManager {
             collisionClip.close();
         }
     }
-    
 }
