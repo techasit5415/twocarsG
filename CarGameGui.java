@@ -58,20 +58,17 @@ public class CarGameGui extends JPanel{
         };
 
                     // ICON SCORE
-        ImageIcon SCpj = new ImageIcon("img/SCORE.png");
-        Image img = SCpj.getImage();
-        Image newImg = img.getScaledInstance(100, 50, Image.SCALE_SMOOTH); 
-
-        ImageIcon newIcon = new ImageIcon(newImg);
-        JButton btn_sc = new JButton(newIcon);
-        btn_sc.setBounds(590, 0, 400, 100);
-        fr.add(btn_sc);
-
-        btn_sc.setContentAreaFilled(false);
-        btn_sc.setBorderPainted(false);
-        btn_sc.setFocusPainted(false);
-        //finish edit
         
+        JLabel imageLabel = new JLabel();
+        ImageIcon icon = new ImageIcon("img/SCOREs.png");
+        imageLabel.setIcon(icon);
+        imageLabel.setBounds(745, 20, 100, 50);
+        fr.add(imageLabel);
+       
+
+        // //finish edit
+
+
         background.setBounds(0, 0, WIDTH, HEIGHT);
         fr.add(background);
         background.add(carPanel);
