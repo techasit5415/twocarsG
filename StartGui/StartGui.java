@@ -1,4 +1,8 @@
+package StartGui;
 import javax.swing.*;
+
+import GameControl.GameRunning;
+import GameControl.GameStateContainer;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,8 +15,6 @@ public class StartGui extends JFrame {
         JFrame frame = new JFrame("TWO Cars");
         ImageIcon startpj = new ImageIcon("img/STARTG.gif");      
 
-        
-
         JButton btnstrt=new JButton(startpj);  
         btnstrt.setBounds(230,370,340,80);  
         frame.add(btnstrt);  
@@ -24,7 +26,7 @@ public class StartGui extends JFrame {
         btnstrt.setContentAreaFilled(false);
         btnstrt.setBorderPainted(false);
         btnstrt.setFocusPainted(false); 
-        //
+
         btnstrt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,15 +44,14 @@ public class StartGui extends JFrame {
         frame.setSize(400,400);  
         frame.setLayout(null);  
         frame.setVisible(true); 
-        
-        // dont show background btn
+
         btnExit.setBorder(null); 
         btnExit.setOpaque(false);
 
         btnExit.setContentAreaFilled(false);
         btnExit.setBorderPainted(false);
         btnExit.setFocusPainted(false); 
-        //
+
         btnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

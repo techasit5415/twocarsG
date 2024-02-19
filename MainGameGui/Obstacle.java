@@ -1,22 +1,20 @@
-﻿
-import java.awt.Color;
-import java.io.File;
-import java.io.IOException;
+﻿package MainGameGui;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import GameControl.*;
+import GameOverGui.*;
+import SoundControl.*;
 
 public class Obstacle extends Thread {
     private JPanel obstaclePanel;
     private int speed;
     private CarGameGui gui;
     private long lastUpdateTime;
-    private Scores scores;
+
     
     static SoundManager setSound;
     private GameOverGui gover;
@@ -25,10 +23,9 @@ public class Obstacle extends Thread {
 
     public static GameStateContainer gameStateContainer = GameRunning.gameStateContainer;
 
-    public Obstacle(CarGameGui gui, int speed, int x, int width, Scores scores) {
+    public Obstacle(CarGameGui gui, int speed, int x, int width) {
         this.gui = gui;
         this.speed = speed;
-        this.scores = scores;
 
         ImageIcon obstacleIcon = new ImageIcon("img/Obstacle.png");
 
@@ -59,15 +56,13 @@ public class Obstacle extends Thread {
             lastUpdateTime = now;
 
             int x = obstaclePanel.getX();
-            int y = obstaclePanel.getY() + (int) (speed * elapsedTime / 1_000_000_000); // Convert nanoseconds to sec
-
+            int y = obstaclePanel.getY() + (int) (speed * elapsedTime / 1_000_000_000);
             obstaclePanel.setLocation(x, y);
 
             if (gui.carPanel.getBounds().intersects(obstaclePanel.getBounds())) {
 
                 handleCollision();
             } else if (gui.RcarPanel.getBounds().intersects(obstaclePanel.getBounds())) {
-
                 // System.out.println("CarPanel hit Point!");
                 handleCollision();
             } else if (gui.RcarPanel.getBounds().intersects(obstaclePanel.getBounds())) {
@@ -89,10 +84,7 @@ public class Obstacle extends Thread {
 
     private void handleCollision() {
         setSound.playGameOver();
-
         GameRunning.gameOver();
 
-        gover = new GameOverGui(gui);
-        gover.setVisible(true);
     }
 }

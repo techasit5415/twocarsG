@@ -1,3 +1,5 @@
+package MainGameGui;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -51,13 +53,11 @@ public class CarHandler implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
+
     }
 }

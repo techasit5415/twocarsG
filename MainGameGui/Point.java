@@ -1,16 +1,12 @@
-﻿import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.io.File;
-import java.io.IOException;
+﻿package MainGameGui;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import GameControl.*;
+import SoundControl.*;
 
 public class Point extends Thread {
     private JPanel pointPanel;
@@ -21,7 +17,7 @@ public class Point extends Thread {
 
     public static GameStateContainer gameStateContainer = GameRunning.gameStateContainer;
 
-    private boolean isVisible = true; // Flag to control visibility
+    private boolean isVisible = true;
 
     SoundManager setSound;
 
@@ -63,7 +59,7 @@ public class Point extends Thread {
             lastUpdateTime = now;
 
             int x = pointPanel.getX();
-            int y = pointPanel.getY() + (int) (speed * elapsedTime / 1_000_000_000); // Convert nanoseconds to seconds
+            int y = pointPanel.getY() + (int) (speed * elapsedTime / 1_000_000_000);
 
             pointPanel.setLocation(x, y);
 
@@ -76,7 +72,7 @@ public class Point extends Thread {
             }
 
             try {
-                Thread.sleep(10); // A small delay to prevent high CPU usage
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -85,16 +81,6 @@ public class Point extends Thread {
         gui.background.remove(pointPanel);
         gui.background.repaint();
     }
-    private void playCollisionSound() {
-        try {
-            File soundFile = new File(".\\soundeffect\\ping.wav");
-            Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(soundFile));
-            clip.start();
-        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void handleCollision() {
         setSound.playCollectPoint();
@@ -102,7 +88,6 @@ public class Point extends Thread {
 
         isVisible = false;
 
-        playCollisionSound();
         scores.increaseScore();
 
     }

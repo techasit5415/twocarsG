@@ -1,26 +1,29 @@
-﻿import javax.swing.*;
+﻿package GameOverGui;
+
+import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
+
+import MainGameGui.*;
+import FontControl.*;
+import GameControl.*;
 
 public class GameOverGui extends JFrame {
 
+    FontManager customFont;
+
     private CarGameGui gui;
-
-    SetFont customFont;
-
     private Scores scores = new Scores();
 
     public GameOverGui(CarGameGui gui) {
 
-        customFont = new SetFont();
+        customFont = new FontManager();
 
         this.gui = gui;
-
-
 
         ImageIcon RStartpj = new ImageIcon("img/RETRY.png");
         JButton btn_rst = new JButton(RStartpj);
@@ -31,12 +34,14 @@ public class GameOverGui extends JFrame {
         btn_rst.setBorderPainted(false);
         btn_rst.setFocusPainted(false);
         btn_rst.addActionListener(new ActionListener() {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
             GameRunning.resetGame();
             }
         });
+
         ImageIcon Exitpj = new ImageIcon("img/EXIT.png");
         JButton btn_q = new JButton(Exitpj);
         btn_q.setBounds(290, 618, 215, 70);
@@ -47,7 +52,7 @@ public class GameOverGui extends JFrame {
         btn_q.setContentAreaFilled(false);
         btn_q.setBorderPainted(false);
         btn_q.setFocusPainted(false); 
-        //
+
         btn_q.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +60,6 @@ public class GameOverGui extends JFrame {
             }
         });
 
-        // Background
         ImageIcon originalBackgroundIcon = new ImageIcon("img/gameOver.png");
         Image backgroundImg = originalBackgroundIcon.getImage().getScaledInstance(800, 900, Image.SCALE_SMOOTH);
         ImageIcon resizedBackgroundIcon = new ImageIcon(backgroundImg);
@@ -73,8 +77,9 @@ public class GameOverGui extends JFrame {
         setResizable(false);
 
         addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
+
+        @Override
+        public void windowClosing(WindowEvent e) {
                 gui.quitGame();
             }
         });

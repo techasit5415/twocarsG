@@ -1,4 +1,6 @@
-﻿public class GameStateContainer {
+﻿package GameControl;
+
+public class GameStateContainer {
     private GameState value;
 
     public GameStateContainer(GameState value) {

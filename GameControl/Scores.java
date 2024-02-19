@@ -1,4 +1,6 @@
-﻿public class Scores {
+﻿package GameControl;
+
+public class Scores {
     private static int score;
     private static int bestScore;
 

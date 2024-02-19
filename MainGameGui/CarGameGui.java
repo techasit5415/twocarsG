@@ -1,40 +1,43 @@
+package MainGameGui;
+
+import FontControl.*;
+import GameControl.*;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
 import java.util.*;
 import java.util.concurrent.*;
 
 import javax.swing.*;
 
-public class CarGameGui extends JPanel{
-    static JFrame fr;
-    JPanel carPanel;
-    JPanel RcarPanel;
-    CarHandler hnd;
 
-    SetFont customFont;
+public class CarGameGui extends JPanel{
 
     public static GameStateContainer gameStateContainer = GameRunning.gameStateContainer;
 
-    private GameOverGui gover;
-
+    public static JFrame fr;
+    JPanel carPanel;
+    JPanel RcarPanel;
     JLabel background;
+
+    CarHandler hnd;
+
+    FontManager customFont;
+
     int speed = 100;
     int frequency = 1700;
     int ObSpeed = Math.max((int) ((Math.random() * 350) + 1), 300);
     int pointSpeed = Math.max((int) ((Math.random() * 350) + 1), 300);
+
     final int WIDTH = 900;
     final int HEIGHT = 800;
 
     private static Scores scores;
-
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
     public CarGameGui() {
-        customFont = new SetFont();
-
+        customFont = new FontManager();
         hnd = new CarHandler(this);
         addCar();
         initGUI();
@@ -48,8 +51,7 @@ public class CarGameGui extends JPanel{
         fr = new JFrame("Two Cars");
         fr.setLayout(null);
 
-        //edit for sc show on background
-        background = new JLabel("", new ImageIcon("img/Comp1.gif"), JLabel.CENTER) {
+        background = new JLabel("", new ImageIcon("./img/Comp1.gif"), JLabel.CENTER) {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -60,17 +62,11 @@ public class CarGameGui extends JPanel{
             }
         };
 
-        // ICON SCORE
-        
         JLabel imageLabel = new JLabel();
         ImageIcon icon = new ImageIcon("img/SCOREs.png");
         imageLabel.setIcon(icon);
         imageLabel.setBounds(745, 20, 100, 50);
         fr.add(imageLabel);
-       
-
-        // //finish edit
-
 
         background.setBounds(0, 0, WIDTH, HEIGHT);
         fr.add(background);
@@ -94,7 +90,6 @@ public class CarGameGui extends JPanel{
         carPanel.add(car);
         carPanel.setLocation(260, 600);
         carPanel.setOpaque(true);
-        // carPanel.setBackground(Color.BLUE);
         carPanel.setBackground(new Color(0, 0, 0, 0));
 
         RcarPanel = new JPanel();
@@ -103,7 +98,6 @@ public class CarGameGui extends JPanel{
         RcarPanel.add(Rcar);
         RcarPanel.setLocation(470, 600);
         RcarPanel.setOpaque(true);
-        // RcarPanel.setBackground(Color.BLUE);
         RcarPanel.setBackground(new Color(0, 0, 0, 0));
     }
 
@@ -123,10 +117,10 @@ public class CarGameGui extends JPanel{
         if(GameRunning.gameStateContainer.getValue().equals(GameState.END))
             scheduler.shutdown();
         else
-                    try {
+        try {
             scheduler.schedule(() -> addObstruction(), frequency, TimeUnit.MILLISECONDS);
         } catch (Exception e) {
-            // TODO: handle exception
+            
         }
         
         
@@ -140,7 +134,7 @@ public class CarGameGui extends JPanel{
             randomPX = getRandomXPosition(usedXPositions);
         } while (randomPX == randomObX);
 
-        Obstacle obstacle = new Obstacle(this, ObSpeed, randomObX, 70, scores);
+        Obstacle obstacle = new Obstacle(this, ObSpeed, randomObX, 70);
         Point point = new Point(this, pointSpeed, randomPX, 70, scores);
         obstacle.start();
         point.start();
