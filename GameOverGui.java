@@ -4,14 +4,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 public class GameOverGui extends JFrame {
 
     private CarGameGui gui;
 
+    SetFont customFont;
+
     private Scores scores = new Scores();
 
     public GameOverGui(CarGameGui gui) {
+
+        customFont = new SetFont();
+
         this.gui = gui;
 
 
@@ -49,19 +55,6 @@ public class GameOverGui extends JFrame {
             }
         });
 
-        // JTextField HighScore = new JTextField("0");
-        // HighScore.setBounds(160, 0, 60, 50);
-        // HighScore.setOpaque(false);
-        // HighScore.setBorder(null);
-        // add(HighScore);
-
-        // JTextField CRScore = new JTextField("0");
-        // CRScore.setBounds(750, 0, 40, 50);
-        // CRScore.setOpaque(false);
-        // CRScore.setBorder(null);
-        // add(CRScore);
-        
-
         // Background
         ImageIcon originalBackgroundIcon = new ImageIcon("img/menuRestartclean.png");
         Image backgroundImg = originalBackgroundIcon.getImage().getScaledInstance(800, 900, Image.SCALE_SMOOTH);
@@ -82,8 +75,7 @@ public class GameOverGui extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                // Handle any cleanup or additional actions when the game over screen is closed
-                gui.quitGame(); // Close the main game window
+                gui.quitGame();
             }
         });
 
@@ -94,11 +86,11 @@ public class GameOverGui extends JFrame {
             super.paint(g);
 
             g.setColor(Color.white);
-            Font f = new Font("arial",Font.BOLD,50);
+            Font f = new Font("arial",Font.BOLD,25);
             g.setFont(f);
-            g.drawString(Integer.toString(scores.getBestScore()), 90,140 );
+            g.drawString(Integer.toString(scores.getBestScore()), 80,120 );
 
-            g.drawString(Integer.toString(scores.getScore()), 690,140 );
+            g.drawString(Integer.toString(scores.getScore()), 680,120 );
 
         }
 }

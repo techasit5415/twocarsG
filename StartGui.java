@@ -24,10 +24,7 @@ public class StartGui extends JFrame {
         frame.setSize(400,400);  
         frame.setLayout(null);  
         frame.setVisible(true); 
-        
-        //dont show background btn
-        // btnstrt.setBorder(null); 
-        // btnstrt.setOpaque(false);
+
 
         btnstrt.setContentAreaFilled(false);
         btnstrt.setBorderPainted(false);
@@ -38,7 +35,6 @@ public class StartGui extends JFrame {
             public void actionPerformed(ActionEvent e) {
                     frame.dispose();
                     GameRunning.mainGame();
-                    // System.out.println(GameRunning.gameStateContainer.getValue());
             }
         });
 
@@ -70,16 +66,13 @@ public class StartGui extends JFrame {
         });
 
         ImageIcon originalBackgroundIcon = new ImageIcon("img/cleanMenu.png");
-        // Resize the background ImageIcon to fit the preferred size of the frame
         Image backgroundImg = originalBackgroundIcon.getImage().getScaledInstance(800, 900, Image.SCALE_SMOOTH);
         ImageIcon resizedBackgroundIcon = new ImageIcon(backgroundImg);
 
-        // Create a JLabel for the background image
         JLabel background = new JLabel(resizedBackgroundIcon);
         background.setBounds(0, 0, 800, 900);
         frame.setSize(800, 900);
 
-        //bottom
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setVisible(true);

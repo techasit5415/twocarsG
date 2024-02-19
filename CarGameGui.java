@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -12,6 +13,8 @@ public class CarGameGui extends JPanel{
     JPanel carPanel;
     JPanel RcarPanel;
     CarHandler hnd;
+
+    SetFont customFont;
 
     public static GameStateContainer gameStateContainer = GameRunning.gameStateContainer;
 
@@ -30,14 +33,14 @@ public class CarGameGui extends JPanel{
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
     public CarGameGui() {
+        customFont = new SetFont();
+
         hnd = new CarHandler(this);
         addCar();
         initGUI();
         
         scores = new Scores();
         addObstruction();
-        
-        
     }
     
 
@@ -52,12 +55,12 @@ public class CarGameGui extends JPanel{
                 super.paintComponent(g);
                 
                 g.setColor(Color.WHITE);
-                g.setFont(new Font("Arial", Font.BOLD, 50));
-                g.drawString(""+scores.getScore(), 770, 120);
+                g.setFont(customFont.getFont().deriveFont(Font.BOLD, 50));
+                g.drawString(""+scores.getScore(), 783, 90);
             }
         };
 
-                    // ICON SCORE
+        // ICON SCORE
         
         JLabel imageLabel = new JLabel();
         ImageIcon icon = new ImageIcon("img/SCOREs.png");
@@ -154,17 +157,6 @@ public class CarGameGui extends JPanel{
     public static void quitGame() {
         fr.dispose();
     }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("Score: " + scores.getScore(), 20, 20); 
-    } 
-    
-
 
 
 }
