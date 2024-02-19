@@ -20,6 +20,7 @@ public class StartGui extends JFrame {
         //dont show background btn
         // btnstrt.setBorder(null); 
         // btnstrt.setOpaque(false);
+
         btnstrt.setContentAreaFilled(false);
         btnstrt.setBorderPainted(false);
         btnstrt.setFocusPainted(false); 
@@ -30,6 +31,33 @@ public class StartGui extends JFrame {
                     frame.dispose();
                     GameRunning.mainGame();
                     // System.out.println(GameRunning.gameStateContainer.getValue());
+            }
+        });
+
+
+
+        ImageIcon exitpj = new ImageIcon("img/EXIT.png");
+        JButton btnExit=new JButton(exitpj);  
+        btnExit.setBounds(295,470,210,70);  
+        frame.add(btnExit);  
+        frame.setSize(400,400);  
+        frame.setLayout(null);  
+        frame.setVisible(true); 
+        
+        // dont show background btn
+        btnExit.setBorder(null); 
+        btnExit.setOpaque(false);
+
+        btnExit.setContentAreaFilled(false);
+        btnExit.setBorderPainted(false);
+        btnExit.setFocusPainted(false); 
+        //
+        btnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    frame.dispose();
+                    
+        
             }
         });
 
