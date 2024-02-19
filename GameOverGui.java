@@ -86,11 +86,11 @@ public class GameOverGui extends JFrame {
             super.paint(g);
 
             g.setColor(Color.white);
-            Font f = customFont.getFont().deriveFont(Font.BOLD, 50);
+            Font f = new Font("arial",Font.BOLD,25);
             g.setFont(f);
-            g.drawString(Integer.toString(scores.getBestScore()), 90,120 );
+            g.drawString(Integer.toString(scores.getBestScore()), 80,120 );
 
-            g.drawString(Integer.toString(scores.getScore()), 690,120 );
+            g.drawString(Integer.toString(scores.getScore()), 680,120 );
 
         }
 }
