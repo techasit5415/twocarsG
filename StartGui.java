@@ -9,17 +9,12 @@ public class StartGui extends JFrame {
     
     public StartGui(){
         JFrame frame = new JFrame("TWO Cars");
-        // ImageIcon startpj = new ImageIcon("img/STARTG.gif");
+        ImageIcon startpj = new ImageIcon("img/STARTG.gif");      
 
-        ImageIcon icon = new ImageIcon("img/STARTG.gif");
-
-        // ปรับขนาดของ Icon เพื่อให้เหมาะสมกับ JButton
-        Image img = icon.getImage();
-        Image newImg = img.getScaledInstance(100, 50, Image.SCALE_SMOOTH); // ปรับขนาดให้เท่ากับขนาดปุ่ม
-        ImageIcon startpj = new ImageIcon(newImg);
+        
 
         JButton btnstrt=new JButton(startpj);  
-        btnstrt.setBounds(250,370,295,80);  
+        btnstrt.setBounds(230,370,340,80);  
         frame.add(btnstrt);  
         frame.setSize(400,400);  
         frame.setLayout(null);  
@@ -42,7 +37,7 @@ public class StartGui extends JFrame {
 
         ImageIcon exitpj = new ImageIcon("img/EXIT.png");
         JButton btnExit=new JButton(exitpj);  
-        btnExit.setBounds(295,470,210,70);  
+        btnExit.setBounds(295,490,210,70);  
         frame.add(btnExit);  
         frame.setSize(400,400);  
         frame.setLayout(null);  
