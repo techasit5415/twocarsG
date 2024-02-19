@@ -41,7 +41,7 @@ public class GameOverGui extends JFrame {
         
 
         // Background
-        ImageIcon originalBackgroundIcon = new ImageIcon("img/menu.png");
+        ImageIcon originalBackgroundIcon = new ImageIcon("img/MENUtalay.png");
         Image backgroundImg = originalBackgroundIcon.getImage().getScaledInstance(800, 900, Image.SCALE_SMOOTH);
         ImageIcon resizedBackgroundIcon = new ImageIcon(backgroundImg);
 
