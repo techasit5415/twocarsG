@@ -4,9 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Font;
 
 public class GameOverGui extends JFrame {
 
@@ -85,7 +82,7 @@ public class GameOverGui extends JFrame {
             g.setColor(Color.white);
             Font f = new Font("arial",Font.BOLD,25);
             g.setFont(f);
-            g.drawString("100", 80,120 );
+            g.drawString("score", 80,120 );
 
             g.drawString("100", 680,120 );
 
