@@ -63,10 +63,8 @@ public class Obstacle extends Thread {
 
                 handleCollision();
             } else if (gui.RcarPanel.getBounds().intersects(obstaclePanel.getBounds())) {
-                // System.out.println("CarPanel hit Point!");
                 handleCollision();
             } else if (gui.RcarPanel.getBounds().intersects(obstaclePanel.getBounds())) {
-                // System.out.println("RcarPanel hit Point!");
 
                 handleCollision();
             }
@@ -83,8 +81,8 @@ public class Obstacle extends Thread {
     }
 
     private void handleCollision() {
+        isVisible = false;
         setSound.playGameOver();
         GameRunning.gameOver();
-
     }
 }

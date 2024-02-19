@@ -84,12 +84,8 @@ public class Point extends Thread {
 
     private void handleCollision() {
         setSound.playCollectPoint();
-
-
         isVisible = false;
-
         scores.increaseScore();
-
     }
 
 }

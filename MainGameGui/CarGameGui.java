@@ -56,10 +56,11 @@ public class CarGameGui extends JPanel{
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 
-                g.setColor(Color.WHITE);
+                g.setColor(new Color(248,237,98));
                 g.setFont(customFont.getFont().deriveFont(Font.BOLD, 50));
                 g.drawString(""+scores.getScore(), 783, 90);
-            }
+
+                }
         };
 
         JLabel imageLabel = new JLabel();
@@ -108,9 +109,6 @@ public class CarGameGui extends JPanel{
         if (frequency > 500 && scores.getScore() % 5 == 0) frequency -= 100; 
         if (pointSpeed < 800 && scores.getScore() % 5 == 0) pointSpeed += (int)(Math.random() * 100);
         if (ObSpeed < 800 && scores.getScore() % 5 == 0) ObSpeed += (int)(Math.random() * 100);
-        //pointSpeed = scores.getScore() % 5 == 0 ? Math.min(pointSpeed + (int) ((Math.random() * 50) + 1), 1000) : 500;
-        //ObSpeed = scores.getScore() % 5 == 0 ? Math.min(ObSpeed + (int) ((Math.random() * 50) + 1), 1000) : 500;
-        // System.out.printf("frequency (%d) : pointSpeed (%d) : ObSpeed (%d)%n",frequency,pointSpeed,ObSpeed);
 
         createObstacleAndPoint(usedXPositions);
         
