@@ -75,6 +75,7 @@ public class GameOverGui extends JFrame {
         setLocationRelativeTo(gui.fr);
         setVisible(true);
         setResizable(false);
+        setLocationRelativeTo(null);
 
         addWindowListener(new WindowAdapter() {
 
