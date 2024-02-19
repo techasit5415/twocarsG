@@ -52,6 +52,7 @@ public class GameOverGui extends JFrame {
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(gui.fr);
         setVisible(true);
+        setResizable(false);
 
         addWindowListener(new WindowAdapter() {
             @Override

@@ -41,6 +41,7 @@ public class StartGui extends JFrame {
 
         //bottom
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.setVisible(true);
         frame.add(background);
         frame.setLocationRelativeTo(null);
