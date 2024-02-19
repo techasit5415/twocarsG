@@ -20,7 +20,6 @@ public class GameRunning extends JPanel {
 
     public static void gameOver() {
         gameStateContainer.setValue(GameState.END);
-        System.out.println(gameStateContainer.getValue());
         
     }
 

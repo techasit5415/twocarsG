@@ -39,7 +39,6 @@ public class CarGameGui extends JPanel{
         
     }
     
-
     
 
     private void initGUI() {
