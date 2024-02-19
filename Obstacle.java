@@ -1,6 +1,11 @@
-﻿import java.awt.Color;
+﻿
+
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+
 
 public class Obstacle extends Thread {
     private JPanel obstaclePanel;
@@ -74,3 +79,4 @@ public class Obstacle extends Thread {
         gover.setVisible(true);
     }
 }
+

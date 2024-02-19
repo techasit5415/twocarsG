@@ -1,8 +1,11 @@
 ﻿import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Point extends Thread {
+public class Point extends Thread{
     private JPanel pointPanel;
     private int speed;
     private CarGameGui gui;
@@ -69,5 +72,7 @@ public class Point extends Thread {
         scores.increaseScore();
         System.out.println(scores.getScore());
         
+        
     }
+
 }

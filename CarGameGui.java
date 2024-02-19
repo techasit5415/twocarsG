@@ -32,8 +32,10 @@ public class CarGameGui extends JPanel{
         hnd = new CarHandler(this);
         addCar();
         initGUI();
+        
         scores = new Scores();
         addObstruction();
+        
         
     }
     
@@ -43,7 +45,19 @@ public class CarGameGui extends JPanel{
     private void initGUI() {
         fr = new JFrame("Two Cars");
         fr.setLayout(null);
-        background = new JLabel("", new ImageIcon("img/Comp1.gif"), JLabel.CENTER);
+
+        //edit for sc show on background
+        background = new JLabel("", new ImageIcon("img/Comp1.gif"), JLabel.CENTER) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Arial", Font.BOLD, 20));
+                g.drawString("Score: " + scores.getScore(), 20, 20);
+            }
+        };
+        //finish edit
         background.setBounds(0, 0, WIDTH, HEIGHT);
         fr.add(background);
         background.add(carPanel);
@@ -131,18 +145,15 @@ public class CarGameGui extends JPanel{
     }
 
     @Override
-    public void paint(Graphics g){
-        super.paint(g);
-
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString("Score: " + scores.getScore(), 20, 20); 
+    } 
+    
 
-        if(GameRunning.gameStateContainer.getValue().equals(GameState.PLAYING)){
-            g.setColor(Color.white);
-        Font f = new Font("arial",Font.BOLD,24);
-        g.setFont(f);
-        g.drawString("Score : ", 80,120 );
-        }
 
-    }
 
 }
