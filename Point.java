@@ -70,7 +70,7 @@ public class Point extends Thread{
     private void handleCollision() {
         isVisible = false; // Set visibility to false
         scores.increaseScore();
-        System.out.println(scores.getScore());
+        
         
         
     }

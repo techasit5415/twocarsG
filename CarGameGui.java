@@ -40,8 +40,6 @@ public class CarGameGui extends JPanel{
     }
     
 
-    
-
     private void initGUI() {
         fr = new JFrame("Two Cars");
         fr.setLayout(null);
