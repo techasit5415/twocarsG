@@ -90,7 +90,7 @@ public class CarGameGui extends JPanel{
 
         carPanel = new JPanel();
         carPanel.setSize(70, 120);
-        JLabel car = new JLabel(new ImageIcon("img/car.png"));
+        JLabel car = new JLabel(new ImageIcon("img/car1.png"));
         carPanel.add(car);
         carPanel.setLocation(260, 600);
         carPanel.setOpaque(true);
@@ -99,7 +99,7 @@ public class CarGameGui extends JPanel{
 
         RcarPanel = new JPanel();
         RcarPanel.setSize(70, 120);
-        JLabel Rcar = new JLabel(new ImageIcon("img/car.png"));
+        JLabel Rcar = new JLabel(new ImageIcon("img/car2.png"));
         RcarPanel.add(Rcar);
         RcarPanel.setLocation(470, 600);
         RcarPanel.setOpaque(true);
