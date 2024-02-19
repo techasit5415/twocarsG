@@ -1,4 +1,6 @@
-﻿public class GameRunning {
+﻿import javax.swing.JPanel;
+
+public class GameRunning extends JPanel {
 
     private static Scores scores = new Scores();
     public static GameStateContainer gameStateContainer = new GameStateContainer(GameState.MENU);
@@ -18,7 +20,7 @@
 
     public static void gameOver() {
         gameStateContainer.setValue(GameState.END);
-        System.out.println(gameStateContainer.getValue());
+
         
     }
 
@@ -32,5 +34,6 @@
     public static void quitGame(){
         System.exit(0);
     }
+    
 
 }

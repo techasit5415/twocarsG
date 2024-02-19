@@ -1,10 +1,12 @@
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.util.*;
 import java.util.concurrent.*;
 
 import javax.swing.*;
 
-public class CarGameGui {
+public class CarGameGui extends JPanel{
     static JFrame fr;
     JPanel carPanel;
     JPanel RcarPanel;
@@ -22,7 +24,7 @@ public class CarGameGui {
     final int WIDTH = 900;
     final int HEIGHT = 800;
 
-    public static Scores scores;
+    private static Scores scores;
 
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
@@ -30,14 +32,30 @@ public class CarGameGui {
         hnd = new CarHandler(this);
         addCar();
         initGUI();
+        
         scores = new Scores();
         addObstruction();
+        
+        
     }
+    
 
     private void initGUI() {
         fr = new JFrame("Two Cars");
         fr.setLayout(null);
-        background = new JLabel("", new ImageIcon("img/Comp1.gif"), JLabel.CENTER);
+
+        //edit for sc show on background
+        background = new JLabel("", new ImageIcon("img/Comp1.gif"), JLabel.CENTER) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Arial", Font.BOLD, 20));
+                g.drawString("Score: " + scores.getScore(), 20, 20);
+            }
+        };
+        //finish edit
         background.setBounds(0, 0, WIDTH, HEIGHT);
         fr.add(background);
         background.add(carPanel);
@@ -123,5 +141,17 @@ public class CarGameGui {
     public static void quitGame() {
         fr.dispose();
     }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString("Score: " + scores.getScore(), 20, 20); 
+    } 
+    
+
+
 
 }

@@ -10,14 +10,14 @@ public class StartGui extends JFrame {
     public StartGui(){
         JFrame frame = new JFrame("TWO Cars");
         JButton btn=new JButton("");  
-        btn.setBounds(250,470,300,100);  
+        btn.setBounds(250,370,295,80);  
         frame.add(btn);  
         frame.setSize(400,400);  
         frame.setLayout(null);  
         frame.setVisible(true);  
         //dont show background btn
-        btn.setOpaque(false);
-        btn.setContentAreaFilled(false);
+        // btn.setOpaque(false);
+        // btn.setContentAreaFilled(false);
         btn.setBorderPainted(false); 
         //
         btn.addActionListener(new ActionListener() {

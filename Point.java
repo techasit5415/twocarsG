@@ -1,4 +1,13 @@
 ﻿import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -34,7 +43,7 @@ public class Point extends Thread {
         lastUpdateTime = System.nanoTime();
 
         while (pointPanel.getY() < gui.HEIGHT && isVisible) {
-            if(GameRunning.gameStateContainer.getValue().equals(GameState.END))
+            if (GameRunning.gameStateContainer.getValue().equals(GameState.END))
                 break;
             long now = System.nanoTime();
             long elapsedTime = now - lastUpdateTime;
@@ -46,10 +55,10 @@ public class Point extends Thread {
             pointPanel.setLocation(x, y);
 
             if (gui.carPanel.getBounds().intersects(pointPanel.getBounds())) {
-                System.out.println("CarPanel hit Point!");
+                // System.out.println("CarPanel hit Point!");
                 handleCollision();
             } else if (gui.RcarPanel.getBounds().intersects(pointPanel.getBounds())) {
-                System.out.println("RcarPanel hit Point!");
+                // System.out.println("RcarPanel hit Point!");
                 handleCollision();
             }
 
@@ -63,10 +72,22 @@ public class Point extends Thread {
         gui.background.remove(pointPanel);
         gui.background.repaint();
     }
+    private void playCollisionSound() {
+        try {
+            File soundFile = new File(".\\soundeffect\\YESYES.wav");
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(soundFile));
+            clip.start();
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void handleCollision() {
         isVisible = false; // Set visibility to false
+        playCollisionSound();
         scores.increaseScore();
-        System.out.println(scores.getScore());
+
     }
+
 }

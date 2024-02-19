@@ -1,6 +1,11 @@
-﻿import java.awt.Color;
+﻿
+
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+
 
 public class Obstacle extends Thread {
     private JPanel obstaclePanel;
@@ -35,7 +40,6 @@ public class Obstacle extends Thread {
     public void run() {
         lastUpdateTime = System.nanoTime();
 
-        System.out.println(GameRunning.gameStateContainer.getValue());
         while (obstaclePanel.getY() < gui.HEIGHT && isVisible) {
             if(GameRunning.gameStateContainer.getValue().equals(GameState.END))
                 break;
@@ -49,10 +53,17 @@ public class Obstacle extends Thread {
             obstaclePanel.setLocation(x, y);
 
             if (gui.carPanel.getBounds().intersects(obstaclePanel.getBounds())) {
-                System.out.println("CarPanel hit Point!");
+
+                
                 handleCollision();
             } else if (gui.RcarPanel.getBounds().intersects(obstaclePanel.getBounds())) {
-                System.out.println("RcarPanel hit Point!");
+                
+
+                // System.out.println("CarPanel hit Point!");
+                handleCollision();
+            } else if (gui.RcarPanel.getBounds().intersects(obstaclePanel.getBounds())) {
+                // System.out.println("RcarPanel hit Point!");
+
                 handleCollision();
             }
 
@@ -74,3 +85,4 @@ public class Obstacle extends Thread {
         gover.setVisible(true);
     }
 }
+
