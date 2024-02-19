@@ -1,4 +1,10 @@
-﻿public class GameRunning {
+﻿import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+public class GameRunning extends JPanel {
 
     private static Scores scores = new Scores();
     public static GameStateContainer gameStateContainer = new GameStateContainer(GameState.MENU);
@@ -32,5 +38,6 @@
     public static void quitGame(){
         System.exit(0);
     }
+    
 
 }

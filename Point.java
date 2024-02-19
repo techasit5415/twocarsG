@@ -68,5 +68,6 @@ public class Point extends Thread {
         isVisible = false; // Set visibility to false
         scores.increaseScore();
         System.out.println(scores.getScore());
+        
     }
 }

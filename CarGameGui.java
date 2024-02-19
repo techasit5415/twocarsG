@@ -1,10 +1,12 @@
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.util.*;
 import java.util.concurrent.*;
 
 import javax.swing.*;
 
-public class CarGameGui {
+public class CarGameGui extends JPanel{
     static JFrame fr;
     JPanel carPanel;
     JPanel RcarPanel;
@@ -22,7 +24,7 @@ public class CarGameGui {
     final int WIDTH = 900;
     final int HEIGHT = 800;
 
-    public static Scores scores;
+    private static Scores scores;
 
     private ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
@@ -32,7 +34,11 @@ public class CarGameGui {
         initGUI();
         scores = new Scores();
         addObstruction();
+        
     }
+    
+
+    
 
     private void initGUI() {
         fr = new JFrame("Two Cars");
@@ -122,6 +128,21 @@ public class CarGameGui {
 
     public static void quitGame() {
         fr.dispose();
+    }
+
+    @Override
+    public void paint(Graphics g){
+        super.paint(g);
+
+        
+
+        if(GameRunning.gameStateContainer.getValue().equals(GameState.PLAYING)){
+            g.setColor(Color.white);
+        Font f = new Font("arial",Font.BOLD,24);
+        g.setFont(f);
+        g.drawString("Score : ", 80,120 );
+        }
+
     }
 
 }
