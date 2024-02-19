@@ -76,12 +76,18 @@ public class GameOverGui extends JFrame {
             }
         });
 
-        @Override
+        
+    }
+    @Override
         public void paint(Graphics g){
             super.paint(g);
 
-            g.setColor(getBackground());
+            g.setColor(Color.white);
+            Font f = new Font("arial",Font.BOLD,25);
+            g.setFont(f);
+            g.drawString("100", 80,120 );
+
+            g.drawString("100", 680,120 );
 
         }
-    }
 }
