@@ -35,9 +35,17 @@ public class GameOverGui extends JFrame {
             }
         });
 
-        JTextField HighScore = new JTextField("0");
-        HighScore.setBounds(700, 0, 100, 50);
-        add(HighScore);
+        // JTextField HighScore = new JTextField("0");
+        // HighScore.setBounds(160, 0, 60, 50);
+        // HighScore.setOpaque(false);
+        // HighScore.setBorder(null);
+        // add(HighScore);
+
+        // JTextField CRScore = new JTextField("0");
+        // CRScore.setBounds(750, 0, 40, 50);
+        // CRScore.setOpaque(false);
+        // CRScore.setBorder(null);
+        // add(CRScore);
         
 
         // Background
@@ -64,5 +72,19 @@ public class GameOverGui extends JFrame {
                 gui.quitGame(); // Close the main game window
             }
         });
+
+        
     }
+    @Override
+        public void paint(Graphics g){
+            super.paint(g);
+
+            g.setColor(Color.white);
+            Font f = new Font("arial",Font.BOLD,25);
+            g.setFont(f);
+            g.drawString("score", 80,120 );
+
+            g.drawString("100", 680,120 );
+
+        }
 }
