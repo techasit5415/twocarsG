@@ -22,7 +22,7 @@ public class GameOverGui extends JFrame {
 
 
 
-        ImageIcon RStartpj = new ImageIcon("img/RESTART.png");
+        ImageIcon RStartpj = new ImageIcon("img/RETRY.png");
         JButton btn_rst = new JButton(RStartpj);
         btn_rst.setBounds(205, 470, 400, 100);
         add(btn_rst);
