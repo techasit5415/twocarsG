@@ -58,7 +58,11 @@ public class CarGameGui extends JPanel{
                 
                 g.setColor(new Color(248,237,98));
                 g.setFont(customFont.getFont().deriveFont(Font.BOLD, 50));
-                g.drawString(""+scores.getScore(), 783, 90);
+                if(scores.getScore()> 99){
+                    g.drawString(""+scores.getScore(), 780, 90);
+                }else{
+                    g.drawString(""+scores.getScore(), 783, 90);
+                }
 
                 }
         };
